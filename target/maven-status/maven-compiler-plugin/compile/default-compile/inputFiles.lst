@@ -1,5 +1,8 @@
-C:\Users\Elogio.mi\Downloads\프로젝트\app\src\main\java\app\api\controller\DeptAPIController.java
-C:\Users\Elogio.mi\Downloads\프로젝트\app\src\main\java\app\AppApplication.java
-C:\Users\Elogio.mi\Downloads\프로젝트\app\src\main\java\app\entity\Dept.java
-C:\Users\Elogio.mi\Downloads\프로젝트\app\src\main\java\app\repository\DeptRepository.java
-C:\Users\Elogio.mi\Downloads\프로젝트\app\src\main\java\app\service\DeptService.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\api\controller\DeptAPIController.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\api\controller\EmpAPIController.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\AppApplication.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\entity\Dept.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\entity\Emp.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\repository\DeptRepository.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\repository\EmpRepository.java
+C:\Cloud\99.practice\collab\collab\src\main\java\app\service\DeptService.java
