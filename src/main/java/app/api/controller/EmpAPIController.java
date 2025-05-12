@@ -32,35 +32,13 @@ public class EmpAPIController {
                 .orElseThrow(() -> new EntityNotFoundException("msg : 사원정보가 존재하지 않습니다"));
     }
     
-    
-    @PostMapping("/api/emp")
-    public ResponseEntity<?> addEmp(@RequestBody Map<String, Object> req) {
-
-        Integer deptno = (Integer) req.get("deptno");
-        var dept = deptRepository.findById(deptno).orElse(null);
-
-        if (dept == null) {
-            Map<String, Object> res = new HashMap<>();
-            res.put("msg", "해당 부서가 존재하지 않습니다.");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
-        }
-
-        Emp emp = Emp.builder()
-                .empno((Integer) req.get("empno"))
-                .ename((String) req.get("ename"))
-                .job((String) req.get("job"))
-                .mgr((Integer) req.get("mgr"))
-                .hiredate(LocalDate.parse((String) req.get("hiredate")))
-                .sal(req.get("Sal") != null ? Double.valueOf(req.get("Sal").toString()) : null)
-                .comm(req.get("comm") != null ? Double.valueOf(req.get("comm").toString()) : null)
-                .dept(dept)
-                .build();
-
-        Emp saved = empRepository.save(emp);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-    }
-
+	
+	@PostMapping("/api/emp")
+	public ResponseEntity<?> createEmp(@RequestBody Emp emp) {
+	    empRepository.save(emp);
+	    return ResponseEntity.status(HttpStatus.CREATED).body(emp);
+	}
+		
 
     
    }
