@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Emp;
 import app.repository.EmpRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,11 +24,9 @@ public class EmpAPIController {
     
     @PutMapping("/api/emp/{id}")
     public ResponseEntity<Emp> updateEmp(@PathVariable Integer id, @RequestBody Emp updatedEmp) {
-        System.out.println("update start");
     	Emp emp = empRepository.findById(id).get();
     	
-        emp.updateEmp(updatedEmp.getEmpno(),
-        		updatedEmp.getEname(), 
+        emp.updateEmp(updatedEmp.getEname(), 
         		updatedEmp.getJob(), 
         		updatedEmp.getMgr(), 
         		updatedEmp.getHiredate(), 
@@ -33,9 +35,14 @@ public class EmpAPIController {
         		updatedEmp.getDept());
         
         empRepository.save(emp);
-        System.out.println(emp);
         
         return ResponseEntity.ok(emp);
     }
+    @GetMapping("/api/emp/{empno}")
+    public Emp getEmpByempno(@PathVariable("empno") Integer empno) {
+		return empRepository.findById(empno)
+                .orElseThrow(() -> new EntityNotFoundException("msg : 사원정보가 존재하지 않습니다"));
+    }
+
 
 }
