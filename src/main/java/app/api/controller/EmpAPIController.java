@@ -1,14 +1,19 @@
 package app.api.controller;
 
+import java.util.Optional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import app.entity.Emp;
 import app.repository.EmpRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.HashMap;
@@ -20,6 +25,22 @@ public class EmpAPIController {
 
     private final EmpRepository empRepository;
     
+    @PutMapping("/api/emp/{id}")
+    public ResponseEntity<Emp> updateEmp(@PathVariable Integer id, @RequestBody Emp updatedEmp) {
+    	Emp emp = empRepository.findById(id).get();
+    	
+        emp.updateEmp(updatedEmp.getEname(), 
+        		updatedEmp.getJob(), 
+        		updatedEmp.getMgr(), 
+        		updatedEmp.getHiredate(), 
+        		updatedEmp.getSal(), 
+        		updatedEmp.getComm(), 
+        		updatedEmp.getDept());
+        
+        empRepository.save(emp);
+        
+        return ResponseEntity.ok(emp);
+    }
     @GetMapping("/api/emp/{empno}")
     public Emp getEmpByempno(@PathVariable("empno") Integer empno) {
 		return empRepository.findById(empno)

@@ -51,4 +51,14 @@ public class Emp {
         this.comm = comm;
         this.dept = dept;
     }
+    
+    public void updateEmp(String ename, String job, Integer mgr, LocalDate hiredate, Double sal, Double comm, Dept dept) {
+    	this.ename = ename;
+        this.job = job;
+        this.mgr = mgr;
+        this.hiredate = hiredate;
+        this.sal = sal;
+        this.comm = comm;
+        this.dept = dept;
+    }
 }
